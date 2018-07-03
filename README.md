@@ -10,3 +10,8 @@ pip install -r path/requirements.txt
 
 **截图展示**
 
+**404**
+![](https://github.com/newderezzed/Library-Student/blob/master/gif/2018-07-03_17-06-37.gif?raw=true)
+
+**index**
+![](https://github.com/newderezzed/Library-Student/blob/master/gif/2018-07-03_17-15-11.gif?raw=true)
