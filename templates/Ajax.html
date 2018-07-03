@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <script src="{% static "main/jquery.js" %} "></script>
+</head>
+<body>
+<form action="/add/" method="get">
+    <input type="text" id="i1" name="i1" value="{{ i1 }}"> +
+    <input type="text" id="i2" name="i2" value="{{ i2 }}"> =
+    <input type="text" id="ret" name="ret" value="{{ ret }}">
+
+    <input id="b1" type="button" value="发送AJAX请求">
+    <input type="submit" value="submit提交">
+</form>
+<script>
+    $("#b1").on("click",function () {
+        var i1 = $("#i1").val();
+        var i2 = $("#i2").val();
+        $.ajax({
+            url:"/ajax_add/",
+            type:"GET",
+            data:{"i1":i1,"i2":i2},
+            success:function (arg) {
+                $("#ret").val(arg);
+            }
+        })
+
+    })
+</script>
+</body>
+</html>

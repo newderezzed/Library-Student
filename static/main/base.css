@@ -1,0 +1,24 @@
+#table_panel_main {
+    margin-top: 10px;
+}
+
+.brand_logo {
+    width: 30px;
+    margin-top: -5px;
+}
+
+#btn_add_css {
+    margin-right: 1px;
+}
+
+.panel-primary {
+    border-color: #1aa59a;
+}
+.panel-primary > .panel-heading {
+    background-color: #1aa59a;
+    border-color: #1aa59a;
+}
+
+.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+    background-color: #1aa59a;
+}

@@ -1,0 +1,46 @@
+{% extends "publisher/base/base.html" %}
+{% block content %}
+    <h1 class="page-header">管理后台
+        <small>作者管理</small>
+    </h1>
+    <!-- 面板开始 -->
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">修改作者信息</h3>
+        </div>
+        <div class="panel-body">
+            <!-- Form -->
+            <form class="form-inline" action="/edit_writer?id={{ writer.id }}" method="post">
+                <div class="form-group">
+                    <label for="exampleInputName1">作者名称</label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="writer_name"
+                           value="{{ writer.name }}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">出生日期</label>
+                    <input type="date" class="form-control" id="exampleInputName2" name="writer_birthday"
+                           value="{{ writer.birthday|date:"Y-m-d"}}">
+                </div>
+                <div class="form-group">
+                    <label for="class_id_info">作品名称</label>
+                    <select multiple name="book_id" class="form-control" id="class_id_info">
+                        {% for book in book_list %}
+
+                            {% if book in writer.books.all %}
+                                <option selected value="{{ book.id }}">{{ book.name }}</option>
+                            {% else %}
+                                <option value="{{ book.id }}">{{ book.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">提交</button>
+            </form>
+        </div>
+        <!-- 面板body结束 -->
+    </div>
+    <!-- 面板整体结束 -->
+{% endblock %}
+{% block writer %}
+    active
+{% endblock %}

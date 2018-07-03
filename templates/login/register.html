@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://www.google.com.hk/images/branding/product/ico/googleg_lodp.ico" rel="shortcut icon">
+    <title>梦巴黎后台系统注册界面</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "main/login.css" %}">
+</head>
+
+<body>
+
+<div class="container">
+    <form class="form-signin" action="/register/" method="post">
+        {% csrf_token %}
+        <h2 class="form-signin-heading">&nbsp;&nbsp;欢迎光临,注册界面</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" name="username" placeholder="Email address" required
+               autofocus>
+        <span style="color: #c12e2a" id="username_info"></span>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" id="btn_submit" type="button">Sign in</button>
+    </form>
+
+</div> <!-- /container -->
+
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+<script src="{% static 'main/bootstrap.js' %}"></script>
+<script src="{% static "ajax/init_ajax.js" %}"></script>
+<script>
+    $("#btn_submit").on("click", function () {
+        var user = $("#inputEmail").val().trim();
+        var pwd = $("#inputPassword").val().trim();
+        if (user && pwd) {
+            $.ajax({
+                url: "/register/",
+                type: "POST",
+                data: {"username": user, "password": pwd},
+                success: function (arg) {
+                    if (arg.status === 1) {
+                        $("#username_info").text(arg.msg);
+{#                        alert(arg.msg);#}
+{#                        console.log(arg.status);#}
+{#                        location.href = "/school/manage/";#}
+                    } else if (arg.status === 2) {
+                        alert(arg.msg + " 请重新登陆");
+                        location.href = "/login/"
+{#                        console.log(arg.status);#}
+                    }
+                }
+            })
+        } else {
+            alert("输入不能为空啊");
+        }
+
+    })
+</script>
+</body>
+</html>
